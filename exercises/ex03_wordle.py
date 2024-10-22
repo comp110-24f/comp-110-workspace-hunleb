@@ -12,11 +12,13 @@ def input_guess(user_word_len: int) -> str:
 
     while (
         len(word_guess) != user_word_len
-    ):  # Creates a while loop that will continue until the user inputs a word with the correct length, making the while statement false
+    ):  # Creates a while loop that will continue until the user inputs a word with the
+        # correct length, making the while statement false
 
         word_guess = input(
             f"That wasn't {user_word_len} chars! Try again: "
-        )  # Prompts the user to input a word with the correct length, stores value as word_guess
+        )  # Prompts the user to input a word with the correct length, stores value as
+        # word_guess
 
     return word_guess
 
@@ -41,7 +43,8 @@ def contains_char(secret_word: str, char_guess: str) -> bool:
 
 
 def emojified(word_guess: str, secret_word: str) -> str:
-    """Function that uses emojis to indicate where a character is located in the secret word"""
+    """Function that uses emojis to indicate
+    where a character is located in secret word"""
 
     assert len(word_guess) == len(
         secret_word
@@ -66,7 +69,8 @@ def emojified(word_guess: str, secret_word: str) -> str:
         ):  # Adds a yellow box if the letter is found elsewhere in the word
             boxes += YELLOW_BOX
         else:
-            boxes += WHITE_BOX  # Adds a white box if the letter is not found anywhere in the word
+            boxes += WHITE_BOX  # Adds a white box if the letter is not found anywhere
+            # in the word
 
         index += 1
 
@@ -78,13 +82,13 @@ def main(secret: str) -> None:
 
     turn: int = 1  # Counts the amount of turns the user is on
 
-    guess: str = input_guess(len(secret))
-    # Defines the guess variable, representing the word that the user guesses, asks user for a word based on # of letters in secret
     while turn <= 6:
         print(
             f"=== Turn {turn}/6 ==="
         )  # Prints what turn the user is on, starting at 1
-
+        guess: str = input_guess(len(secret))
+        # Defines the guess variable, representing the word that the user guesses, asks
+        # user for a word based on # of letters in secret
         print(
             emojified(guess, secret)
         )  # Prints the box emojies based on the guessed word
@@ -94,17 +98,16 @@ def main(secret: str) -> None:
             print(
                 f"You won in {turn}/6 turns!"
             )  # If the user guesses the secret word, this will print
-            quit()
+            break
         else:
 
-            guess = input_guess(user_word_len=len(secret))
-
-        turn += 1  # Increases amount of turns user has taken
+            turn += 1  # Increases amount of turns user has taken
 
     if turn > 6:
         print(
             "X/6 - Sorry, try again tomorrow!"
         )  # If the user uses all 6 turns before guessing secret, this will print
+        # return None
 
 
 if __name__ == "__main__":
